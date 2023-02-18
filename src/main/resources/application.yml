@@ -1,0 +1,53 @@
+#https://spring.pleiades.io/spring-boot/docs/current/reference/html/application-properties.html
+#server
+server:
+  port: 8080
+  ssl:
+    enabled: false
+
+#spring
+spring:
+  main:
+    lazy-initialization: false
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@//192.168.1.13:1521/orclpdb
+    username: SCOTT
+    password: Lipton1120
+  thymeleaf:
+    check-template-location: false
+  session:
+    timeout: 30m
+    jdbc:
+      table-name: SPRING_SESSION
+
+
+
+
+
+
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/**/*Mapper.xml
+  type-aliases-package: com.g.city.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+
+#logging
+logging:
+  level:
+    root: DEBUG
+
+
+
+#JWT
+jwt:
+  secret: secreting
+  private.key: classpath:store/private.pem
+  public.key: classpath:store/public.pem
