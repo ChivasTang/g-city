@@ -21,7 +21,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 
     @Override
     public ResultCode login(final UserLogin userLogin) {
-        if (userLogin == null || userLogin.getUsername() == null) {
+        if (userLogin == null || userLogin.getUsername() == null || userLogin.getUsername().isBlank()) {
             return ResultCode.LOGIN_FAILED_USERNAME_NOT_INPUT;
         }
         if (userLogin.getPassword() == null) {

@@ -18,13 +18,10 @@ public class UserAuthServiceImpl implements UserAuthService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final Optional<UserAuthInfo> userAuthInfo = userAuthInfoMapper.selectByUsername(username);
-        if (userAuthInfo.isEmpty()) {
-            throw new UsernameNotFoundException("Username: " + username + "was not found!");
-        }
-        return User.builder()
-                .username(userAuthInfo.get().getUsername())
-                .password(userAuthInfo.get().getPassword())
+        return userAuthInfo.map(authInfo -> User.builder()
+                .username(authInfo.getUsername())
+                .password(authInfo.getPassword())
                 .roles("USER")
-                .build();
+                .build()).orElse(null);
     }
 }
