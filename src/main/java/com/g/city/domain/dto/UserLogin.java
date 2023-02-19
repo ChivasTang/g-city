@@ -13,13 +13,4 @@ public class UserLogin extends BaseDTO {
     private String username;
     private String password;
     private String token;
-
-    public UserLogin(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public UserLogin(String username) {
-        this.userId = username;
-    }
 }

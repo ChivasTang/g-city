@@ -1,5 +1,10 @@
+### Index
+GET {{baseUrl}}
+Content-Type: {{contentType}}
+Accept: */*
+
 ### Register
-POST {{baseUrl}}{{authRouter}}/{{registerRouter}}
+POST {{baseUrl}}{{authRouter}}/{{authRegister}}
 Content-Type: {{contentType}}
 Accept: */*
 
@@ -10,7 +15,7 @@ Accept: */*
 }
 
 ### Login
-POST {{baseUrl}}{{authRouter}}/{{loginRouter}}
+POST {{baseUrl}}{{authRouter}}/{{authLogin}}
 Content-Type: {{contentType}}
 Accept: */*
 
@@ -18,3 +23,15 @@ Accept: */*
   "username": "tangzh1983",
   "password": "lipton1120"
 }
+
+### Token
+POST {{baseUrl}}{{authRouter}}/{{authToken}}
+Content-Type: {{contentType}}
+Accept: */*
+
+
+### UserProfile
+POST {{baseUrl}}{{authRouter}}/{{userProfile}}
+Content-Type: {{contentType}}
+Accept: */*
+WWW-Authenticate: Bearer

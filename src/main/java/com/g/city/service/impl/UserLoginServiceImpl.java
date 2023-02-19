@@ -2,10 +2,9 @@ package com.g.city.service.impl;
 
 import com.g.city.controller.result.ResultCode;
 import com.g.city.domain.dto.UserLogin;
+import com.g.city.service.JwtTokenService;
 import com.g.city.service.UserLoginService;
 import jakarta.annotation.Resource;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +17,9 @@ public class UserLoginServiceImpl implements UserLoginService {
 
     @Resource
     private PasswordEncoder passwordEncoder;
+
+    @Resource
+    private JwtTokenService jwtTokenService;
 
     @Override
     public ResultCode login(final UserLogin userLogin) {
@@ -36,9 +38,7 @@ public class UserLoginServiceImpl implements UserLoginService {
         if (!passwordEncoder.matches(rawPassword, userDetails.getPassword())) {
             return ResultCode.LOGIN_FAILED_USERNAME_PASSWORD_NOT_VALIDATED;
         }
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        usernamePasswordAuthenticationToken.setDetails(userDetails);
-        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        jwtTokenService.setAuthentication(userDetails);
         return ResultCode.LOGIN_SUCCESS;
     }
 }

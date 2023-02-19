@@ -48,6 +48,6 @@ logging:
 
 #JWT
 jwt:
-  secret: secreting
-  private.key: classpath:store/private.pem
-  public.key: classpath:store/public.pem
+  secret: gCiTy
+  private-key: classpath:store/private.pem
+  public-key: classpath:store/public.pem
