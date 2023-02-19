@@ -1,0 +1,20 @@
+### Register
+POST {{baseUrl}}{{authRouter}}/{{registerRouter}}
+Content-Type: {{contentType}}
+Accept: */*
+
+{
+  "username": "tangzh1983",
+  "password": "lipton1120",
+  "confirm": "lipton1120"
+}
+
+### Login
+POST {{baseUrl}}{{authRouter}}/{{loginRouter}}
+Content-Type: {{contentType}}
+Accept: */*
+
+{
+  "username": "tangzh1983",
+  "password": "lipton1120"
+}

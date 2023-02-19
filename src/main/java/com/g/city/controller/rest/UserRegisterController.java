@@ -19,6 +19,11 @@ public class UserRegisterController {
     @ResponseBody
     public ApiResult<Object> register(@RequestBody UserRegister userRegister) {
         final ResultCode resultCode = userRegisterService.register(userRegister);
-        return resultCode.getCode() == 100 ? ApiResult.success(resultCode, userRegister) : ApiResult.fail(resultCode);
+        if (resultCode.getCode() == 100) {
+            UserRegister register = new UserRegister();
+            register.setUsername(userRegister.getUsername());
+            return ApiResult.success(resultCode, register);
+        }
+        return ApiResult.fail(resultCode);
     }
 }
